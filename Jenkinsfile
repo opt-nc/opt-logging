@@ -90,9 +90,9 @@ node {
         def warPath = ""
 
         /** Run dependency check */
-        stage('dependency check') {
+     /*   stage('dependency check') {
             sh "gradle dependencyCheckAnalyze --info --no-daemon"
-        }
+        }*/
 
         /**
          * Publish package to Artifactory
@@ -126,7 +126,7 @@ node {
     /**
 	 * Edition du rapport de tests
 	**/
-	publishHTML([
+/*	publishHTML([
 	    allowMissing: false,
 	    alwaysLinkToLastBuild: false,
 	    keepAll: true,
@@ -134,12 +134,12 @@ node {
 	    reportFiles: 'index.html',
 	    reportName: 'Test Report',
 	    reportTitles: ''
-	])
+	])*/
 
 	/**
 	 * Edition du rapport de check des dépendances
 	**/
-	publishHTML([
+/*	publishHTML([
 	    allowMissing: false,
 	    alwaysLinkToLastBuild: false,
 	    keepAll: true,
@@ -147,6 +147,6 @@ node {
 	    reportFiles: 'dependency-check-report.html',
 	    reportName: 'Dependency Check Report',
 	    reportTitles: ''
-	])
+	])*/
     
 }
