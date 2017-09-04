@@ -33,7 +33,6 @@ node {
     def branch = env.BRANCH_NAME.replaceAll('/', '-')
 
     def artifactoryBaseUrl = "https://artifactory.intranet.opt/artifactory/"
-    def towerTemplateUrl = "https://tower.intranet.opt/api/v1/job_templates/193/launch/"
 
     def intEnv = '''{
 
@@ -61,15 +60,15 @@ node {
     }
 
     /** Launch Unit Tests */
-    stage('tests') {
-    	try {
-    		sh "gradle test --no-daemon --debug --refresh-dependencies"
-    	} catch(err) {
-    		throw err
-    	} finally {
-    		junit '**/build/**/TEST-*.xml'
-    	}
-    }
+//    stage('tests') {
+//    	try {
+//   		sh "gradle test --no-daemon --debug --refresh-dependencies"
+//    	} catch(err) {
+//    		throw err
+//    	} finally {
+//    		junit '**/build/**/TEST-*.xml'
+//    	}
+//    }
 
     /** Build the project and create the .pom */
     stage('packaging') {
