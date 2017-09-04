@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+	<appender name="METRICS" class="ch.qos.logback.core.FileAppender">
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+		<file>metrics.json</file>
+	</appender>
+
+	<logger name="metricsLogger" additivity="false" level="DEBUG">
+		<appender-ref ref="METRICS"/>
+	</logger>
+
+</configuration>

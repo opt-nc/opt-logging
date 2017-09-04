@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+	<appender name="METIERS" class="ch.qos.logback.core.FileAppender">
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+		<file>metiers.json</file>
+	</appender>
+
+	<logger name="metiersLogger" additivity="false" level="DEBUG">
+		<appender-ref ref="METIERS"/>
+	</logger>
+
+</configuration>
