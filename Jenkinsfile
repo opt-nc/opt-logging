@@ -101,7 +101,7 @@ node {
         stage('publish') {
             def server = Artifactory.server 'ART'
             def props = readProperties  file: 'gradle.properties'
-            def uploadTargetPath = props.version.contains('-SNAPSHOT') ? 'gradle-dev-local' : 'gradle-release-local'
+            def uploadTargetPath = props.version.contains('-SNAPSHOT') ? 'libs-snapshot-local' : 'libs-release-local'
             warPath = "${uploadTargetPath}/nc/opt/kafka/jira/${props['projectName']}/${props.version}/${props['projectName']}-${props.version}.jar"
             def uploadSpec = """ {
                   "files": [
@@ -140,7 +140,7 @@ node {
             //Retire tous les espaces du fichier
             def output = readFile('result').trim()
 
-            //Check si la réponse http code est de type 2XX
+            //Check si la rï¿½ponse http code est de type 2XX
             if("${output}" =~ "(2[0-9][0-9])") {
                 sh "echo 'http_code is ${output}'"
             } else {
@@ -164,7 +164,7 @@ node {
 	])
 
 	/**
-	 * Edition du rapport de check des dépendances
+	 * Edition du rapport de check des dï¿½pendances
 	**/
 	publishHTML([
 	    allowMissing: false,
