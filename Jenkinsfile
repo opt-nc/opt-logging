@@ -102,18 +102,18 @@ node {
             def server = Artifactory.server 'ART'
             def props = readProperties  file: 'gradle.properties'
             def uploadTargetPath = props.version.contains('-SNAPSHOT') ? 'libs-snapshot-local' : 'libs-release-local'
-            warPath = "${uploadTargetPath}/nc/opt/kafka/jira/${props['projectName']}/${props.version}/${props['projectName']}-${props.version}.jar"
+            warPath = "${uploadTargetPath}/nc/opt/core/${props['projectName']}/${props.version}/${props['projectName']}-${props.version}.jar"
             def uploadSpec = """ {
                   "files": [
                     {
                       "pattern": "build/libs/(.*).jar",
-                      "target": "${uploadTargetPath}/nc/opt/kafka/jira/${props['projectName']}/${props.version}/{1}.jar",
+                      "target": "${uploadTargetPath}/nc/opt/core/${props['projectName']}/${props.version}/{1}.jar",
                       "props": "source=jenkins",
                       "regexp": true
                     },
                     {
                       "pattern": "build/libs/(.*).pom",
-                      "target": "${uploadTargetPath}/nc/opt/kafka/jira/${props['projectName']}/${props.version}/{1}.pom",
+                      "target": "${uploadTargetPath}/nc/opt/core/${props['projectName']}/${props.version}/{1}.pom",
                       "props": "source=jenkins",
                       "regexp": true
                     }
@@ -121,32 +121,6 @@ node {
                 }"""
             def buildInfo = server.upload(uploadSpec)
             server.publishBuildInfo(buildInfo)
-        }
-
-        /**
-         * Deploy App on Integration server
-         **/
-        stage('deploy') {
-            def warUrl = "${artifactoryBaseUrl}${warPath}"
-            def json = '''{
-                        "extra_vars": {
-                            "self_job_name": "consumer_jira",
-                            "self_url":  "''' + warUrl + '''"
-                        } 
-                        }'''
-
-            sh "curl -w '%{http_code}' -o /dev/null --noproxy '*' -vv -k -H 'Content-Type: application/json' -X POST --user curlbot:367cf889047b58265b19dfe3d260e849 -d '${json}' ${towerTemplateUrl} > result"
-
-            //Retire tous les espaces du fichier
-            def output = readFile('result').trim()
-
-            //Check si la r�ponse http code est de type 2XX
-            if("${output}" =~ "(2[0-9][0-9])") {
-                sh "echo 'http_code is ${output}'"
-            } else {
-                sh "echo 'WebService return http_code is ${output}'"
-                currentBuild.result = 'FAILURE'
-            }
         }
     }
     
@@ -164,7 +138,7 @@ node {
 	])
 
 	/**
-	 * Edition du rapport de check des d�pendances
+	 * Edition du rapport de check des dépendances
 	**/
 	publishHTML([
 	    allowMissing: false,
