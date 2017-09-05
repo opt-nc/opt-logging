@@ -7,7 +7,7 @@
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<Pattern>%date{ISO8601} [%thread] [%-5level] %logger{200} - %msg%n</Pattern>
 		</layout>
-		<file>${LOG_FILE}</file>
+		<file>${ENV_VAR_LOG_FILE}</file>
 		<append>true</append>
 	</appender>
 
@@ -20,7 +20,7 @@
 	</root>
 
 	<springProfile name="DEV">
-		<root level="DEBUG">
+		<root level="INFO">
 			<appender-ref ref="CONSOLE"/>
 		</root>
 	</springProfile>
