@@ -60,10 +60,7 @@ configurations.all {
 }
 
 dependencies{
-	//APACHE COMMONS
-	compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.1'
-	//TESTS
-    testCompile 'org.springframework.boot:spring-boot-starter-test:1.4.3.RELEASE'
+	compile 'net.logstash.logback:logstash-logback-encoder:4.7'
 }
 
 task createPom {
