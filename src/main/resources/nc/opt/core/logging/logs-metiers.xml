@@ -8,4 +8,4 @@
 	<logger name="metiersLogger" additivity="false" level="DEBUG">
 		<appender-ref ref="METIERS"/>
 	</logger>
-</<included>>
+</included>
