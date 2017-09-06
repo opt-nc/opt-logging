@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
-	<appender name="METIERS" class="ch.qos.logback.core.FileAppender">
-		<encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
-		<file>${ENV_VAR_METIER_LOG_FILE}</file>
-	</appender>
+    <appender name="METIERS" class="ch.qos.logback.core.FileAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        <file>${ENV_VAR_METIER_LOG_FILE}</file>
+    </appender>
 
-	<logger name="metiersLogger" additivity="false" level="INFO">
-		<appender-ref ref="METIERS"/>
-	</logger>
+    <logger name="metiersLogger" additivity="false" level="INFO">
+        <appender-ref ref="METIERS"/>
+    </logger>
 </included>

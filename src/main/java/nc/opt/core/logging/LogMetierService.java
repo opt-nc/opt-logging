@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -15,9 +14,6 @@ import java.util.Map;
 public class LogMetierService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger("metiersLogger");
-
-    public LogMetierService(){
-    }
 
     public void logObject(String objectName, Object obj) {
         LOGGER.info(Markers.append(objectName, obj), "add log entry for {}", objectName);

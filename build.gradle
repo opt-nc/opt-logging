@@ -1,5 +1,5 @@
-buildscript{
-    repositories{
+buildscript {
+    repositories {
         jcenter()
         mavenCentral()
     }
@@ -29,60 +29,60 @@ task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
     from sourceSets.main.allSource
 }
-	
+
 javadoc {
-	options.charSet = 'UTF-8'
-} 
+    options.charSet = 'UTF-8'
+}
 
 jacoco {
-	toolVersion = '0.7.9'
+    toolVersion = '0.7.9'
 }
 
 sonarqube {
-	properties {
-		property 'sonar.projectName', projectName
-		property 'sonar.cpd.exclusions', '**/src/test/**'
-		property 'sonar.coverage.exclusions', '**/config/**,**/src/test/**'
-		property 'sonar.exclusions', '**/Application.java'
-	}
+    properties {
+        property 'sonar.projectName', projectName
+        property 'sonar.cpd.exclusions', '**/src/test/**'
+        property 'sonar.coverage.exclusions', '**/config/**,**/src/test/**'
+        property 'sonar.exclusions', '**/Application.java'
+    }
 }
 
 repositories {
-	mavenLocal()
-	mavenCentral()
-	maven { url 'https://artifactory.intranet.opt/artifactory/libs-snapshot/' }
-	maven { url 'https://artifactory.intranet.opt/artifactory/libs-release/' }
+    mavenLocal()
+    mavenCentral()
+    maven { url 'https://artifactory.intranet.opt/artifactory/libs-snapshot/' }
+    maven { url 'https://artifactory.intranet.opt/artifactory/libs-release/' }
 }
-	
+
 configurations.all {
-    resolutionStrategy { 
+    resolutionStrategy {
         force 'com.google.guava:guava:19.0'
     }
 }
 
-dependencies{
-	compile 'net.logstash.logback:logstash-logback-encoder:4.7'
-	compile 'org.springframework.boot:spring-boot-starter:1.5.6.RELEASE'
+dependencies {
+    compile 'net.logstash.logback:logstash-logback-encoder:4.7'
+    compile 'org.springframework.boot:spring-boot-starter:1.5.6.RELEASE'
 
 }
 
 task createPom {
-	pom {
-		project {
-			artifactId projectName
-			inceptionYear '2017'
-			licenses {
-				license {
-					name 'The Apache Software License, Version 2.0'
-					url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-					distribution 'repo'
-				}
-			}
-			scm {
-				url 'https://gitlab.intranet.opt/opt-core/opt-logging.git'
-				connection 'scm:git@gitlab.intranet.opt:opt-core/opt-logging.git'
-				developerConnection 'scm:git@gitlab.intranet.opt:opt-core/opt-logging.git'
-			}
-		}
-	}.writeTo("build/libs/${projectName}-${version}.pom")
+    pom {
+        project {
+            artifactId projectName
+            inceptionYear '2017'
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                url 'https://gitlab.intranet.opt/opt-core/opt-logging.git'
+                connection 'scm:git@gitlab.intranet.opt:opt-core/opt-logging.git'
+                developerConnection 'scm:git@gitlab.intranet.opt:opt-core/opt-logging.git'
+            }
+        }
+    }.writeTo("build/libs/${projectName}-${version}.pom")
 }
