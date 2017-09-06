@@ -10,7 +10,7 @@ compile group: 'nc.opt.core', name: 'opt-logging', version: '1.0.0'
 
 ## Configuration du logback
 
-###Inclusion de la configuration par défaut
+### Inclusion de la configuration par défaut
 
 ```logback
 <?xml version="1.0" encoding="UTF-8"?>
@@ -20,13 +20,13 @@ compile group: 'nc.opt.core', name: 'opt-logging', version: '1.0.0'
 </configuration>
 ```
 
-###Inclusion de la configuration pour les logs métiers
+### Inclusion de la configuration pour les logs métiers
 ```logback
 <property name="ENV_VAR_METIER_LOG_FILE" value="${ENV_VAR_METIER_LOG_FILE}"/>
 <include resource="nc/opt/core/logging/logs-metiers.xml" />
 ```
 
-##Fonctionnalités
+## Fonctionnalités
 Dans la configuration par défaut en version 1.0.0 :
 <ul>
 <li>Il n'y a pas de rotation des logs car elle est assurée par le SEP.</li>
