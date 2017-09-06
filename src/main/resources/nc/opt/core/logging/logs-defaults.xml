@@ -25,4 +25,10 @@
         </root>
     </springProfile>
 
+    <springProfile name="DEV">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
 </included>
