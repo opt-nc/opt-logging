@@ -7,8 +7,14 @@
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>%date{ISO8601} [%thread] [%-5level] %logger{200} - %msg%n</Pattern>
         </layout>
-        <file>${ENV_VAR_LOG_FILE}</file>
+        <file>${LOG_FILE}</file>
         <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}-%i</FileNamePattern>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+            <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+            <totalSizeCap>${TOTAL_SIZE_CAP}</totalSizeCap>
+        </rollingPolicy>
     </appender>
 
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">

@@ -2,7 +2,14 @@
 <included>
     <appender name="METIERS" class="ch.qos.logback.core.FileAppender">
         <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
-        <file>${ENV_VAR_METIER_LOG_FILE}</file>
+        <file>${LOG_FILE_JSON}</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_FILE_JSON}.%d{yyyy-MM-dd}-%i</FileNamePattern>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+            <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+            <totalSizeCap>${TOTAL_SIZE_CAP}</totalSizeCap>
+        </rollingPolicy>
     </appender>
 
     <logger name="metiersLogger" additivity="false" level="INFO">
