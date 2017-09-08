@@ -5,7 +5,7 @@ La librairie contient les 2 fichiers de configuration de logback préconisé pou
 Ajouter la dépendance suivante dans votre build.gradle :
 
 ```gradle
-compile group: 'nc.opt.core', name: 'opt-logging', version: '1.1.0'
+compile group: 'nc.opt.core', name: 'opt-logging', version: '1.1.1'
 ```
 
 ## Configuration du logback
@@ -30,7 +30,7 @@ compile group: 'nc.opt.core', name: 'opt-logging', version: '1.1.0'
 ```
 
 ## Fonctionnalités
-Dans la configuration par défaut en version 1.1.0 :
+Dans la configuration par défaut en version 1.1.1 :
 <ul>
 <li>La rotation de logs est configurée dans les fichier de la librairie. on utilise [SizeAndTimeBasedRollingPolicy](https://logback.qos.ch/manual/appenders.html).</li>
 <li>Avec le profile dev ou DEV les logs s'affichent dans la console en plus d'être dans le fichiers</li>
