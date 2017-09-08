@@ -3,7 +3,7 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
-    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>%date{ISO8601} [%thread] [%-5level] %logger{200} - %msg%n</Pattern>
         </layout>
