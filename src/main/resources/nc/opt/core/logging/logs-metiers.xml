@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
-    <appender name="METIERS" class="ch.qos.logback.core.FileAppender">
+    <appender name="METIERS" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
         <file>${LOG_FILE_JSON}</file>
         <append>true</append>
