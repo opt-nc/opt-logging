@@ -86,7 +86,7 @@ node {
     /**
      * Execute following steps, only when on the (main) master branch
      **/
-    if (true) {
+    if (branch.equals("master")) {
         def warPath = ""
 
         /** Run dependency check */
