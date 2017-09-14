@@ -5,7 +5,7 @@ La librairie contient les 2 fichiers de configuration de logback préconisé pou
 Ajouter la dépendance suivante dans votre build.gradle :
 
 ```gradle
-compile group: 'nc.opt.core', name: 'opt-logging', version: '1.1.1'
+compile group: 'nc.opt.core', name: 'opt-logging', version: '1.2.0'
 ```
 
 ## Configuration du logback
