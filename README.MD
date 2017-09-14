@@ -30,15 +30,16 @@ compile group: 'nc.opt.core', name: 'opt-logging', version: '1.1.1'
 ```
 
 ## Fonctionnalités
-Dans la configuration par défaut en version 1.1.1 :
+Dans la configuration par défaut en version 1.2.0 :
 <ul>
 <li>La rotation de logs est configurée dans les fichier de la librairie. on utilise [SizeAndTimeBasedRollingPolicy](https://logback.qos.ch/manual/appenders.html).</li>
-<li>Avec le profile dev ou DEV les logs s'affichent dans la console en plus d'être dans le fichiers</li>
+<li>Avec le profil 'dev' les logs s'affichent uniquement dans la console, les variables d'environnement sont donc facultatives</li>
+<li>Avec un profil différent de 'dev' les logs s'affichent uniquement dans les fichiers et il faut définir les variables d'environnement</li>
 <li>Le rootLogger est par défaut à INFO</li>
 </ul>
 
 ## Variables d'environnement
-5 variables d'environnement sont nécessaires : 
+5 variables d'environnement sont nécessaires avec un profil non dev : 
 <ul>
 <li>LOG_FILE : contient le path vers le fichier des logs classiques.
 Les logs classiques sont les fichiers de logs java de base.
