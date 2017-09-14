@@ -21,9 +21,11 @@
         <resetJUL>true</resetJUL>
     </contextListener>
 
-    <root level="INFO">
-        <appender-ref ref="FILE"/>
-    </root>
+    <springProfile name="!dev">
+        <root level="INFO">
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
 
     <springProfile name="dev">
         <root level="INFO">
