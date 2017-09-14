@@ -38,3 +38,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix bug and replace FileAppender by RollingFileAppender
 ### Removed
 - Nothing
+
+## [1.2.0] - 2017-09-14
+### Added
+- Nothing
+### Changed
+- Only log on file when profile is not 'dev'
+### Removed
+- Nothing
