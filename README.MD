@@ -65,3 +65,18 @@ private LogMetierService logMetierService;
 logMetierService.logObject("pays", new Pays());
 ```
 
+## Format des logs
+### Logs système
+le fichier est un fichier .log avec une ligne par log de la forme suivante :
+```
+2017-09-19 10:01:27,213 [http-nio-5001-exec-9] [INFO ] nc.opt.kafka.otrs.controller.ProducerOtrsController - Publication d'un message KAFKA depuis OTRS
+2017-09-19 10:01:27,273 [StreamThread-1] [INFO ] nc.opt.kafka.wfm.service.impl.WfmServiceImpl - TypeTCRM=THDF | Produit=null | Queue=Telecom::CPMC::IC::RLB | TypeId=10
+```
+Le fichiers peut contenir des logs multi lignes en cas de stack trace java
+
+### Logs métiers
+le fichier est un fichier .json avec une ligne par log de la forme suivante :
+```
+{"@timestamp":"2017-09-01T12:47:15.503+11:00","@version":1,"pays":{\"id\":1,\"libelle\":\"France\"},"logger_name":"jsonLogger","thread_name":"http-nio-8084-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2017-09-01T12:47:15.503+11:00","@version":1,"commune":{\"id\":1,\"libelle\":\"Nouméa\", \"province\":\"SUD\", \"cp\":\"98800\"},"logger_name":"jsonLogger","thread_name":"http-nio-8084-exec-1","level":"INFO","level_value":20000}
+```
