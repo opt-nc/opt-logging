@@ -23,6 +23,7 @@ compile group: 'nc.opt.core', name: 'opt-logging', version: '1.2.0'
 ## Configuration du logback
 
 ### Inclusion de la configuration par défaut
+Contenu du fichier 'src/main/resources/logback-spring.xml'
 ```logback
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true">
