@@ -2,11 +2,22 @@
 La librairie contient les 2 fichiers de configuration de logback préconisé pour les développements d'application à l'OPT.
 Toutes les logs sont dans le même fichier .log (${LOG_FILE}) à l'exception des logs métiers qui se trouvent dans un seul fichier .json (${LOG_FILE_JSON}) si le besoin est exprimé.
 
-## Build gradle
+## Import de la dépendance
+
+### Gradle : build.gradle
 Ajouter la dépendance suivante dans votre build.gradle :
 
 ```gradle
 compile group: 'nc.opt.core', name: 'opt-logging', version: '1.2.0'
+```
+
+### Maven : pom.xml
+```gradle
+<dependency>
+	<groupId>nc.opt.core</groupId>
+	<artifactId>opt-logging</artifactId>
+	<version>1.2.0</version>
+</dependency> 
 ```
 
 ## Configuration du logback
