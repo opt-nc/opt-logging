@@ -1,0 +1,183 @@
+#!/usr/bin/env groovy
+import groovy.json.*
+
+/**
+ *
+ * VARIABLES
+ *
+ **/
+BRANCH = "master"
+releaseVersion = ""
+snapshotVersion = ""
+
+/**
+ *
+ * PIPELINE STAGES
+ *
+ **/
+node {
+    //Build parameter for the Jenkins project
+    properties([parameters([string(defaultValue: '', description: 'ex: 1.0.0 (version de la librairie à publier)', name: 'VersionRelease'),string(defaultValue: '', description: 'ex: 1.0.1-SNAPSHOT (nouvelle version snapshot de la librairie)', name: 'VersionSnapshot')])])
+    //Store the parameter
+    if(VersionRelease != "" && VersionSnapshot != "") {
+        releaseVersion = VersionRelease
+        snapshotVersion = VersionSnapshot
+        println "--------------------\nINPUT PARAMETERS:\nreleaseVersion = ${VersionRelease}\nsnapshotVersion = ${VersionSnapshot}\n--------------------"
+    } else{
+        println "BUILD PARAMETERS WERE NOT SET, PLEASE REBUILD WITH PARAMETERS"
+        sh "exit 1"
+    }
+
+    /**
+     * Set env variables
+     **/
+    stage('config'){
+        config()
+    }
+
+    /**
+     * Checkout latest branch code
+     **/
+    stage('checkout'){
+        checkout scm
+    }
+
+    /**
+     * Change the project version by removing -SNAPSHOT
+     **/
+    stage('update V'){
+        changeVersion(releaseVersion)
+    }
+
+    /**
+     * Clean the project, build it and create .pom
+     **/
+    stage('build'){
+        sh "gradle clean build --no-daemon --refresh-dependencies"
+        sh "gradle createPom --no-daemon"
+    }
+
+    /**
+     * Run Unit Tests
+     **/
+    stage('test'){
+        try {
+            sh "gradle test --no-daemon --refresh-dependencies"
+        } catch(err) {
+            throw err
+        } finally {
+            //junit '**/build/**/TEST-*.xml'
+        }
+    }
+
+    /**
+     * Run Sonarqube analysis
+     **/
+    stage('sonar analysis'){
+        withSonarQubeEnv('Sonar') {
+            sh "gradle sonarqube --no-daemon -Dsonar.branch=${BRANCH} --info"
+        }
+    }
+
+    /**
+     * Publish package to Artifactory
+     **/
+    stage('publish'){
+        publish()
+    }
+
+    /**
+     * Add and commit the current changes then tag the release Version
+     **/
+    stage('tag'){
+        //Commit
+        sh "git commit -a -m \"Release version ${releaseVersion}\""
+        //Tag
+        tag(releaseVersion)
+    }
+
+    /**
+     * Change the project version by replacing it my the new SNAPSHOT version
+     **/
+    stage('update V+1-SNAPSHOT'){
+        changeVersion(snapshotVersion)
+    }
+
+    /**
+     * Add and commit the current changes, the push it
+     **/
+    stage('commit push'){
+        sh "git commit -a -m \"New SNAPSHOT version ${releaseVersion}\""
+        sh "git push origin HEAD:master"
+        sh "git push origin \"v${releaseVersion}\""
+    }
+
+//    /**
+//     * Scan the project's dependencies for vulnerabilities with OWASP dependency-check-gradle plugin
+//     **/
+//    stage('vulnerabilities scan') {
+//        sh "gradle dependencyCheckAnalyze --stacktrace --info --no-daemon"
+//    }
+}
+
+/**
+ *
+ * METHODS CALLED BY STAGES
+ *
+ **/
+def config(){
+    // Set Java JDK in path
+    env.JAVA_HOME = "${tool 'java-8'}"
+    env.PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
+
+    // Set Gradle tool and add it to the path
+    def gradleHome = tool 'gradle-3.4.1'
+    env.PATH = "${gradleHome}/bin:${env.PATH}"
+}
+
+def tag(tagV){
+    try {
+        sh "git tag -a \"v${tagV}\" -m \"Release version ${tagV}\""
+    } catch (err) {
+        println err
+        if(err.toString().contains("script returned exit code 128") == true){
+            sh "git tag -d \"v${tagV}\""
+            sh "git tag -a \"v${tagV}\" -m \"Release version ${tagV}\""
+        } else {
+            throw err
+        }
+    }
+}
+
+def publish() {
+    def properties = readProperties  file: 'gradle.properties'
+    def server = Artifactory.server 'ART'
+    def uploadTargetPath = 'libs-release-local'
+    def groupPath = properties.group.replaceAll("\\.", "/")
+    def uploadSpec = """ {
+            "files": [
+            {
+                "pattern": "build/libs/(.*).jar",
+                "target": "${uploadTargetPath}/${groupPath}/${properties.projectName}/${properties.version}/{1}.jar",
+                "props": "source=jenkins",
+                "regexp": true
+            },
+            {
+                "pattern": "build/libs/(.*).pom",
+                "target": "${uploadTargetPath}/${groupPath}/${properties.projectName}/${properties.version}/{1}.pom",
+                "props": "source=jenkins",
+                "regexp": true
+            }
+            ]
+        }"""
+
+    def buildInfo = server.upload(uploadSpec)
+    server.publishBuildInfo(buildInfo)
+}
+
+/**
+ * Change the version stored in gradle.properties
+ **/
+def changeVersion(ver) {
+    sh "sed -i 's/^version=.*/version=${ver}/g' gradle.properties"
+}

@@ -13,18 +13,20 @@ import java.util.Map;
 @Component
 public class LogMetierService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("metiersLogger");
+    public static final String LOGGER_NAME = "metiersLogger";
+    public static final String MSG = "add log entry for {}";
+    private static final Logger LOGGER = LoggerFactory.getLogger(LOGGER_NAME);
 
     public void logObject(String objectName, Object obj) {
-        LOGGER.info(Markers.append(objectName, obj), "add log entry for {}", objectName);
+        LOGGER.info(Markers.append(objectName, obj), MSG, objectName);
     }
 
     public void logAttributes(Object obj) {
-        LOGGER.info(Markers.appendFields(obj), "add log entry for {}", obj.getClass());
+        LOGGER.info(Markers.appendFields(obj), MSG, obj.getClass());
     }
 
     public void logArray(String objectName, Object... obj) {
-        LOGGER.info(Markers.appendArray(objectName, obj), "add log entry for {}", objectName);
+        LOGGER.info(Markers.appendArray(objectName, obj), MSG, objectName);
     }
 
     public void logEntries(Map<?, ?> map) {
@@ -32,6 +34,6 @@ public class LogMetierService {
     }
 
     public void logJson(String objectName, String json) {
-        LOGGER.info(Markers.appendRaw(objectName, json), "add log entry for {}", objectName);
+        LOGGER.info(Markers.appendRaw(objectName, json), MSG, objectName);
     }
 }

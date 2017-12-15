@@ -5,14 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
-## [1.0.0] - 2017-09-07
 ### Added
-- logs-defaults.xml configuration
-- logs-metiers.xml configuration
-- define environment variable ENV_VAR_LOG_FILE
-- define environment variable ENV_VAR_METIER_LOG_FILE
-- Add LogMetierService component
+- Ajout tests unitaires
+- Correction sonar
+
+## [1.2.0] - 2017-09-14
+### Changed
+- Only log on file when profile is not 'dev'
+
+## [1.1.1] - 2017-09-08
+### Changed
+- Fix bug and replace FileAppender by RollingFileAppender
 
 ## [1.1.0] - 2017-09-08
 ### Added
@@ -26,10 +29,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Rename environment variable ENV_VAR_LOG_FILE to LOG_FILE
 - Rename environment variable ENV_VAR_METIER_LOG_FILE to LOG_FILE_JSON
 
-## [1.1.1] - 2017-09-08
-### Changed
-- Fix bug and replace FileAppender by RollingFileAppender
+## [1.0.0] - 2017-09-07
+### Added
+- logs-defaults.xml configuration
+- logs-metiers.xml configuration
+- define environment variable ENV_VAR_LOG_FILE
+- define environment variable ENV_VAR_METIER_LOG_FILE
+- Add LogMetierService component
 
-## [1.2.0] - 2017-09-14
-### Changed
-- Only log on file when profile is not 'dev'

@@ -60,15 +60,15 @@ node {
     }
 
     /** Launch Unit Tests */
-//    stage('tests') {
-//    	try {
-//   		sh "gradle test --no-daemon --debug --refresh-dependencies"
-//    	} catch(err) {
-//    		throw err
-//    	} finally {
-//    		junit '**/build/**/TEST-*.xml'
-//    	}
-//    }
+    stage('tests') {
+    	try {
+   		sh "gradle test --no-daemon --debug --refresh-dependencies"
+    	} catch(err) {
+    		throw err
+    	} finally {
+    		junit '**/build/**/TEST-*.xml'
+    	}
+    }
 
     /** Build the project and create the .pom */
     stage('packaging') {
@@ -126,7 +126,7 @@ node {
     /**
 	 * Edition du rapport de tests
 	**/
-/*	publishHTML([
+	publishHTML([
 	    allowMissing: false,
 	    alwaysLinkToLastBuild: false,
 	    keepAll: true,
@@ -134,7 +134,7 @@ node {
 	    reportFiles: 'index.html',
 	    reportName: 'Test Report',
 	    reportTitles: ''
-	])*/
+	])
 
 	/**
 	 * Edition du rapport de check des dépendances
