@@ -17,7 +17,8 @@ snapshotVersion = ""
  **/
 node {
     //Build parameter for the Jenkins project
-    properties([parameters([string(defaultValue: '', description: 'ex: 1.0.0 (version de la librairie à publier)', name: 'VersionRelease'),string(defaultValue: '', description: 'ex: 1.0.1-SNAPSHOT (nouvelle version snapshot de la librairie)', name: 'VersionSnapshot')])])
+    properties([parameters([string(defaultValue: '', description: 'ex: 1.0.0 (version de la librairie à publier)', name: 'VersionRelease'),string(defaultValue: '', description: 'ex: 1.0.1-SNAPSHOT (nouvelle version snapshot de la librairie)', name: 'VersionSnapshot')]),
+    disableConcurrentBuilds()])
     //Store the parameter
     if(VersionRelease != "" && VersionSnapshot != "") {
         releaseVersion = VersionRelease
