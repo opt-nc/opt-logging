@@ -8,7 +8,7 @@ Toutes les logs sont dans le même fichier .log (${LOG_FILE}) à l'exception des
 Ajouter la dépendance suivante dans votre build.gradle :
 
 ```gradle
-compile group: 'nc.opt.core', name: 'opt-logging', version: '1.2.1'
+compile group: 'nc.opt.core', name: 'opt-logging', version: '1.3.0'
 ```
 
 ### Maven : pom.xml
@@ -16,7 +16,7 @@ compile group: 'nc.opt.core', name: 'opt-logging', version: '1.2.1'
 <dependency>
 	<groupId>nc.opt.core</groupId>
 	<artifactId>opt-logging</artifactId>
-	<version>1.2.1</version>
+	<version>1.3.0</version>
 </dependency> 
 ```
 
@@ -44,7 +44,7 @@ Contenu du fichier 'src/main/resources/logback-spring.xml'
 ## Fonctionnalités
 
 ## Logs classiques
-Dans la configuration par défaut en version 1.2.1 :
+Dans la configuration par défaut en version 1.3.0 :
 <ul>
 <li>La rotation de logs est configurée dans les fichier de la librairie. on utilise [SizeAndTimeBasedRollingPolicy](https://logback.qos.ch/manual/appenders.html).</li>
 <li>Avec le profil 'dev' les logs s'affichent uniquement dans la console, les variables d'environnement sont donc facultatives</li>
@@ -53,7 +53,7 @@ Dans la configuration par défaut en version 1.2.1 :
 </ul>
 
 ## Logs métiers
-Dans la configuration des logs métiers en version 1.2.1 :
+Dans la configuration des logs métiers en version 1.3.0 :
 <ul>
 <li>La rotation de logs est configurée dans les fichier de la librairie. on utilise [SizeAndTimeBasedRollingPolicy](https://logback.qos.ch/manual/appenders.html).</li>
 <li>Quelque soit le profil les logs sont générés dans le fichier</li>
