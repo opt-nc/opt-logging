@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Mise à jours des versions des librairies
     * spring 1.5.6 -> 1.5.9
     * logback-encoder 4.7 -> 5.1
+- Ajout de deux threads mdc pour améliorer le diagnostic ('threadMDC1', 'threadMDC2')
 
 ## [1.3.0] - 2018-03-15
 ### Changed

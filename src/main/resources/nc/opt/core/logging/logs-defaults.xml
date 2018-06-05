@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
+    <property name="CONSOLE_LOG_PATTERN" value="%date{ISO8601} [%thread] [%-5level]%mdc{threadMDC1}%mdc{threadMDC2} %logger{200} - %msg%n" />
+
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
@@ -10,7 +12,7 @@
     <springProfile name="!dev">
         <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <layout class="ch.qos.logback.classic.PatternLayout">
-                <Pattern>%date{ISO8601} [%thread] [%-5level] %logger{200} - %msg%n</Pattern>
+                <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
             </layout>
             <file>${LOG_FILE}</file>
             <append>true</append>
