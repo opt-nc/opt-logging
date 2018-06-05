@@ -9,7 +9,7 @@
         <resetJUL>true</resetJUL>
     </contextListener>
 
-    <springProfile name="!dev">
+    <springProfile name="prod">
         <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <layout class="ch.qos.logback.classic.PatternLayout">
                 <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
@@ -28,16 +28,9 @@
         </root>
     </springProfile>
 
-    <springProfile name="dev">
+    <springProfile name="!prod">
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>
-
-    <springProfile name="DEV">
-        <root level="INFO">
-            <appender-ref ref="CONSOLE"/>
-        </root>
-    </springProfile>
-
 </included>

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     * spring 1.5.6 -> 1.5.9
     * logback-encoder 4.7 -> 5.1
 - Ajout de deux threads mdc pour améliorer le diagnostic ('threadMDC1', 'threadMDC2')
+- Changement de la façon d'ajouter les appenders en fonction des profils spring
 
 ## [1.3.0] - 2018-03-15
 ### Changed
