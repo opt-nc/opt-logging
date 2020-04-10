@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
-    <springProfile name="prod">
+
+    <springProfile name="!dev">
         <appender name="METIERS" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
             <file>${LOG_FILE_JSON}</file>
@@ -19,9 +20,16 @@
     </springProfile>
 
 
-    <springProfile name="!prod">
+    <springProfile name="dev">
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>
+
+    <springProfile name="DEV">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
 </included>

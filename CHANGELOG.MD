@@ -4,14 +4,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [1.4.0] - 2018-06-05
-### Changed
-- Mise à jours des versions des librairies
-    * spring 1.5.6 -> 1.5.9
-    * logback-encoder 4.7 -> 5.1
-- Ajout de deux threads mdc pour améliorer le diagnostic ('threadMDC1', 'threadMDC2')
-- Changement de la façon d'ajouter les appenders en fonction des profils spring
-
 ## [1.3.0] - 2018-03-15
 ### Changed
 - Activation de l'autoconfiguration pour le bean LogMetierService
