@@ -21,6 +21,10 @@ public class LogMetierService {
         LOGGER.info(Markers.append(objectName, obj), MSG, objectName);
     }
 
+    public void logObject(String objectName, String endPoint, String obj) {
+        LOGGER.info(Markers.append(objectName, new LogObject(endPoint, InstrumentationAgent.getObjectSize(obj))), MSG, objectName);
+    }
+
     public void logAttributes(Object obj) {
         LOGGER.info(Markers.appendFields(obj), MSG, obj.getClass());
     }
