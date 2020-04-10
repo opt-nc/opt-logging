@@ -1,6 +1,7 @@
 package nc.opt.core.logging;
 
 import net.logstash.logback.marker.Markers;
+import org.openjdk.jol.info.GraphLayout;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -22,7 +23,7 @@ public class LogMetierService {
     }
 
     public void logObject(String objectName, String endPoint, String obj) {
-        LOGGER.info(Markers.append(objectName, new LogObject(endPoint, InstrumentationAgent.getObjectSize(obj))), MSG, objectName);
+        LOGGER.info(Markers.append(objectName, new LogObject(endPoint, GraphLayout.parseInstance(obj).totalSize())), MSG, objectName);
     }
 
     public void logAttributes(Object obj) {
