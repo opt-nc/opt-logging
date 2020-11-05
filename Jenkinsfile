@@ -1,4 +1,4 @@
 @Library('opt-shared-libraries') _
 
 
-optLibBuild()
+optLibBuild GRADLE_TOOL: "gradle-6.5"
