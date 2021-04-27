@@ -1,19 +1,9 @@
 buildscript {
     repositories {
-<<<<<<< Updated upstream
-        jcenter()
-        mavenCentral()
+        maven { url "https://artifactory.intranet.opt/artifactory/gradle-virtual/" }
     }
     dependencies {
-<<<<<<< HEAD
-        classpath 'org.owasp:dependency-check-gradle:2.0.1'
-=======
-        mavenLocal()
-        maven { url "https://artifactory.intranet.opt/artifactory/gradle-virtual/" }
->>>>>>> Stashed changes
-=======
         classpath 'org.owasp:dependency-check-gradle:6.0.3'
->>>>>>> 1dde25be98542f50dd3016c0888517b67db5200e
     }
 }
 
@@ -27,6 +17,7 @@ apply plugin: 'maven'
 apply plugin: 'jacoco'
 apply plugin: 'maven-publish'
 apply plugin: 'org.sonarqube'
+apply plugin: 'org.owasp.dependencycheck'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
