@@ -5,13 +5,10 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -20,11 +17,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by 2816ARN on 15/12/2017.
- */
-@SpringBootTest(classes = TestConfig.class)
-@RunWith(SpringRunner.class)
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+@SpringBootTest(classes = LogMetierService.class)
 public class LogMetierServiceTest {
 
     @Autowired
@@ -35,30 +31,30 @@ public class LogMetierServiceTest {
     private ByteArrayOutputStream myOut;
 
     private void assertEqualsLog(String objectName, AbstractLogObject log, TestObject... objects) throws Exception {
-        Assert.assertNotNull(log);
-        Assert.assertNotNull(log.timestamp);
-        Assert.assertNotNull(log.version);
-        Assert.assertEquals("add log entry for " + objectName, log.message);
-        Assert.assertEquals(LogMetierService.LOGGER_NAME, log.loggerName);
-        Assert.assertNotNull(log.threadName);
-        Assert.assertEquals("INFO", log.level);
-        Assert.assertNotNull(log.levelValue);
+        assertNotNull(log);
+        assertNotNull(log.timestamp);
+        assertNotNull(log.version);
+        assertEquals("add log entry for " + objectName, log.message);
+        assertEquals(LogMetierService.LOGGER_NAME, log.loggerName);
+        assertNotNull(log.threadName);
+        assertEquals("INFO", log.level);
+        assertNotNull(log.levelValue);
         if (objects != null) {
             if (objects.length == 1) {
-                Assert.assertNotNull(((LogObject) log).test);
-                Assert.assertEquals(objects[0].name, ((LogObject) log).test.name);
+                assertNotNull(((LogObject) log).test);
+                assertEquals(objects[0].name, ((LogObject) log).test.name);
             } else if (objects.length > 0) {
-                Assert.assertNotNull(((LogArray) log).test);
-                Assert.assertEquals(objects.length, ((LogArray) log).test.size());
+                assertNotNull(((LogArray) log).test);
+                assertEquals(objects.length, ((LogArray) log).test.size());
                 int i = 0;
                 for (TestObject o : objects) {
-                    Assert.assertEquals(o.name, ((LogArray) log).test.get(i++).name);
+                    assertEquals(o.name, ((LogArray) log).test.get(i++).name);
                 }
             }
         }
     }
 
-    @Before
+    @BeforeEach
     public void init() {
         myOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(myOut));
@@ -99,7 +95,7 @@ public class LogMetierServiceTest {
         final String standardOutput = myOut.toString();
         LogObject log = mapper.readValue(standardOutput, LogObject.class);
         assertEqualsLog("class " + TestObject.class.getName(), log);
-        Assert.assertEquals("1", log.attributes.get("name"));
+        assertEquals("1", log.attributes.get("name"));
     }
 
     @Test
@@ -155,6 +151,7 @@ public class LogMetierServiceTest {
         private String level;
         @JsonProperty("level_value")
         private Integer levelValue;
+
         public AbstractLogObject() {
 
         }
