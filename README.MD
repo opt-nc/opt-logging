@@ -119,3 +119,23 @@ le fichier est un fichier .json avec une ligne par log de la forme suivante :
 {"@timestamp":"2017-09-01T12:47:15.503+11:00","@version":1,"commune":{\"id\":1,\"libelle\":\"Nouméa\", \"province\":\"SUD\", \"cp\":\"98800\"},"logger_name":"jsonLogger","thread_name":"http-nio-8084-exec-1","level":"INFO","level_value":20000}
 ```
 
+## Commande de synchronisation gitlab > github
+
+Ce projet doit être synchronisé avec la repo Gitlab https://gitlab.intranet.opt/opt-core/opt-logging.git en utilisant les commandes suivantes :
+
+Lier la repo Github au projet
+```shell
+git remote add github_remote git@github.com:opt-nc/opt-logging.git
+```
+
+Récuperer les dernières modifications sur Gitlab
+```shell
+git pull origin master
+git fetch --tag
+```
+
+Pousser les modifications sur la repo Github
+```shell
+git push github_remote main
+git push --tags github_remote
+```
