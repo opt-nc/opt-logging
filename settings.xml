@@ -1,0 +1,21 @@
+<settings>
+    <profiles>
+        <profile>
+            <id>github</id>
+            <repositories>
+                <repository>
+                    <id>github</id>
+                    <name>GitHub OPT Apache Maven Packages</name>
+                    <url>https://maven.pkg.github.com/opt-nc</url>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+    <servers>
+        <server>
+            <id>github</id>
+            <username>${gh_login}</username>
+            <password>${gh_pwd}</password>
+        </server>
+    </servers>
+</settings>
