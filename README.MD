@@ -136,6 +136,6 @@ git fetch --tag
 
 Pousser les modifications sur la repo Github
 ```shell
-git push github_remote main
+git push github_remote master
 git push --tags github_remote
 ```
