@@ -19,4 +19,4 @@ jobs:
           java-version: ${{ matrix.Java }}
           distribution: 'adopt'
       - name: Build with Maven
-        run: mvn -B -Dgh_login=${{secrets.OPT_CI_LOGIN}} -Dgh_pwd=${{secrets.OPT_CI_TOKEN}} package -s settings.xml
+        run:  mvn clean verify
