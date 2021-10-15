@@ -9,6 +9,18 @@
     <description>Librairie OPT de gestion des logs pour les applications du socle.</description>
     <inceptionYear>2017</inceptionYear>
     <packaging>jar</packaging>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <distribution>repo</distribution>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://github.com/opt-nc/opt-logging.git</url>
+        <connection>scm:git@github.com:opt-nc/opt-logging.git</connection>
+        <developerConnection>scm:git@github.com:opt-nc/opt-logging.git</developerConnection>
+    </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
