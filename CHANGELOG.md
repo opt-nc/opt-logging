@@ -1,3 +1,10 @@
+## [2.1.4](https://github.com/opt-nc/opt-logging/compare/v2.1.3...v2.1.4) (2021-10-18)
+
+
+### Bug Fixes
+
+* **publish:** add user/pwd ([4438f1d](https://github.com/opt-nc/opt-logging/commit/4438f1d51ebb59effa1272b9f6701e757dcc772d)), closes [#38](https://github.com/opt-nc/opt-logging/issues/38)
+
 ## [2.1.3](https://github.com/opt-nc/opt-logging/compare/v2.1.2...v2.1.3) (2021-10-18)
 
 
