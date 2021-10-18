@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/opt-nc/opt-logging/compare/v2.1.0...v2.1.1) (2021-10-18)
+
+
+### Bug Fixes
+
+* **gradle.properties:** fix conflict ([1d55f6b](https://github.com/opt-nc/opt-logging/commit/1d55f6bc9b5ab895f4b0bdde9b85a502fa65aac0))
+
 # Changelog
 All notable changes to this project will be documented in this file.
 
@@ -46,4 +53,3 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - define environment variable ENV_VAR_LOG_FILE
 - define environment variable ENV_VAR_METIER_LOG_FILE
 - Add LogMetierService component
-
