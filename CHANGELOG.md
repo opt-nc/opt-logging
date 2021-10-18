@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/opt-nc/opt-logging/compare/v2.1.1...v2.1.2) (2021-10-18)
+
+
+### Bug Fixes
+
+* **release:** suppression parametre --skip-mavne-deploy ([ce2bb30](https://github.com/opt-nc/opt-logging/commit/ce2bb30565cf43732b7f3475b18948fe7f90c23c))
+
 ## [2.1.1](https://github.com/opt-nc/opt-logging/compare/v2.1.0...v2.1.1) (2021-10-18)
 
 
