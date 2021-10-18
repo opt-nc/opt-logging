@@ -20,6 +20,14 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
 
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
       - name: Publish to GitHub Packages Apache Maven
         run: mvn --batch-mode deploy
         env:
