@@ -14,8 +14,7 @@
     <servers>
         <server>
             <id>github</id>
-            <username>${env.OPT_CI_LOGIN}</username>
-            <password>${env.OPT_CI_TOKEN}</password>
+            <privateKey>${env.GITHUB_TOKEN}</privateKey>
         </server>
     </servers>
 </settings>
