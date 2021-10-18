@@ -1,3 +1,11 @@
+## [2.1.3](https://github.com/opt-nc/opt-logging/compare/v2.1.2...v2.1.3) (2021-10-18)
+
+
+### Bug Fixes
+
+* **maven publish:** ajout du fichier de config maven ([a869245](https://github.com/opt-nc/opt-logging/commit/a869245e2f425d2760e5b02b226f57a994ed70b8)), closes [#38](https://github.com/opt-nc/opt-logging/issues/38)
+* **publish:** tentative publication github registry ([46b4ac8](https://github.com/opt-nc/opt-logging/commit/46b4ac8924401e7fd6bd662197404793d6944e5c)), closes [#38](https://github.com/opt-nc/opt-logging/issues/38)
+
 ## [2.1.2](https://github.com/opt-nc/opt-logging/compare/v2.1.1...v2.1.2) (2021-10-18)
 
 
