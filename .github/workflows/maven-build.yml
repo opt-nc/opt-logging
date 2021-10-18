@@ -50,5 +50,7 @@ jobs:
           @semantic-release/changelog
       - name: Run semantic release to bump version and create release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release --skip-maven-deploy
+          OPT_CI_TOKEN: ${{ secrets.OPT_CI_TOKEN }}
+          OPT_CI_LOGIN: ${{ secrets.OPT_CI_LOGIN }}
+        run: npx semantic-release
+
