@@ -9,7 +9,55 @@ les développements d'application à l'[OPT-NC](https://github.com/opt-nc).
 Toutes les logs sont dans le même fichier `.log (${LOG_FILE})` à l'exception des logs métiers qui se
 trouvent dans un seul fichier `.json` `(${LOG_FILE_JSON})` si le besoin est exprimé.
 
-## Import de la dépendance
+## Import de la dépendance publique
+
+Cette dépendance est disponible publiquement via [Jitpack](https://jitpack.io/#opt-nc/opt-logging).
+
+### Maven
+
+Ajouter la repo Jitpack :
+
+```xml
+<repositories>
+  <repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+  </repository>
+</repositories>
+```
+
+Puis la dépedance : 
+
+```xml
+<dependency>
+  <groupId>com.github.opt-nc</groupId>
+  <artifactId>opt-logging</artifactId>
+  <version>Tag</version>
+</dependency>
+```
+
+### Gradle
+
+Ajouter la repo :
+
+```
+allprojects {
+  repositories {
+			...
+  maven { url 'https://jitpack.io' }
+		}
+}
+````
+
+Puis la dépendance :
+
+```
+dependencies {
+  implementation 'com.github.opt-nc:opt-logging:Tag'
+}
+```
+
+## Import de la dépendance via GH Packages
 
 ### Gradle
 
