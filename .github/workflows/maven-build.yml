@@ -37,9 +37,9 @@ jobs:
           node-version: 14.x
       - name: Install Semantic release and maven-semantic-release plugin
         run: |
-          npm install -g semantic-release \
-          @conveyal/maven-semantic-release @semantic-release/git \
-          @semantic-release/changelog
+         npm install -g semantic-release \
+          @semantic-release/exec \
+          @semantic-release/git 
       - name: Run semantic release to bump version and create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
