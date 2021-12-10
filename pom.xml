@@ -37,6 +37,10 @@
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-failsafe-plugin>2.22.2</maven-failsafe-plugin>
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+             
+        <!-- Sonarcloud analysis -->
+        <sonar.organization>opt-nc</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <repositories>
