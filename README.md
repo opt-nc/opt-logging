@@ -67,7 +67,7 @@ dependencies {
 Ajouter la dépendance suivante dans votre build.gradle :
 
 ```gradle
-compile group: 'nc.opt.core', name: 'opt-logging', version: '1.3.0'
+compile group: 'nc.opt.core', name: 'opt-logging', version: '${opt-logging.verion}'
 ```
 
 ### Maven
@@ -76,7 +76,7 @@ compile group: 'nc.opt.core', name: 'opt-logging', version: '1.3.0'
 <dependency>
   <groupId>nc.opt.core</groupId>
   <artifactId>opt-logging</artifactId>
-  <version>1.3.0</version>
+  <version>${opt-logging.version}</version>
 </dependency> 
 ```
 
