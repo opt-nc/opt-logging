@@ -182,5 +182,4 @@
             <url>https://maven.pkg.github.com/opt-nc/opt-logging</url>
         </repository>
     </distributionManagement>
-
 </project>
