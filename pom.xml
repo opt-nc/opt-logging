@@ -30,7 +30,7 @@
         <jol-core.version>0.16</jol-core.version>
         <logback-classic.version>1.2.10</logback-classic.version>
         <junit-jupiter.version>5.8.2</junit-jupiter.version>
-        <spring-boot-starter-test.version>2.6.1</spring-boot-starter-test.version>
+        <spring-boot-starter-test.version>2.6.2</spring-boot-starter-test.version>
 
         <!-- Plugins versions -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
