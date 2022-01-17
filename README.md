@@ -189,7 +189,7 @@ logMetierService.logObject("pays", new Pays());
 Le fichier est un fichier `.json` avec une ligne par log de la forme suivante :
 
 ```json
-{"@timestamp":"2017-09-01T12:47:15.503+11:00","@version":1,"pays":{\"id\":1,\"libelle\":\"France\"},"logger_name":"jsonLogger","thread_name":"http-nio-8084-exec-1","level":"INFO","level_value":20000}
-{"@timestamp":"2017-09-01T12:47:15.503+11:00","@version":1,"commune":{\"id\":1,\"libelle\":\"Nouméa\", \"province\":\"SUD\", \"cp\":\"98800\"},"logger_name":"jsonLogger","thread_name":"http-nio-8084-exec-1","level":"INFO","level_value":20000}
+{"@timestamp": "2017-09-01T12:47:15.503+11:00","@version": 1,"pays": {"id": 1,"libelle": "France"},"logger_name": "jsonLogger","thread_name": "http - nio - 8084 - exec - 1","level": "INFO","level_value ": 20000}
+{"@timestamp": "2017-09-01T12:47:15.503+11:00","@version": 1,"commune": {"id": 1,"libelle": "Nouméa","province": "SUD","cp": "98800"},"logger_name": "jsonLogger","thread_name": "http - nio - 8084 - exec - 1 ","level": "INFO","level_value ": 20000}
 ```
 
