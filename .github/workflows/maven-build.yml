@@ -37,17 +37,14 @@ jobs:
           java-version: 8
           distribution: 'adopt'
           cache: 'maven'
-      - name: Install NodeJS
-        uses: actions/setup-node@v3.0.0
+      - name: Semantic Release
+        if: github.ref == 'refs/heads/main'
+        id: release
+        uses: cycjimmy/semantic-release-action@v2
         with:
-          node-version: 14.x
-      - name: Install Semantic release and maven-semantic-release plugin
-        run: |
-          npm install -g semantic-release \
-          @semantic-release/exec \
-          @semantic-release/git
-      - name: Run semantic release to bump version and create release
-        run: npx semantic-release
+          extra_plugins: |
+            @semantic-release/exec
+            @semantic-release/git
         env:
           GITHUB_TOKEN: ${{ github.token }}
        
