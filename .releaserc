@@ -4,6 +4,7 @@
    "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
       [
          "@semantic-release/exec",
          {
@@ -11,12 +12,6 @@
              "publishCmd": mvn -B deploy -DskipTests && mkdir release && cp target/opt-logging-*.jar release
          }
       ],
-      [
-               "@semantic-release/github",
-               {
-                  "assets": [ ]
-               }
-            ],
       [
          "@semantic-release/git",
          {
