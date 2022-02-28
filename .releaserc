@@ -13,12 +13,6 @@
          }
       ],
       [
-               "@semantic-release/github",
-               {
-                  "assets": [ ]
-               }
-            ],
-      [
          "@semantic-release/git",
          {
             "assets": "pom.xml",
