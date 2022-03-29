@@ -45,6 +45,7 @@ jobs:
           extra_plugins: |
             @semantic-release/exec
             @semantic-release/git
+            @semantic-release/github
         env:
-          GITHUB_TOKEN: ${{ secrets.OPT_CI_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
        
