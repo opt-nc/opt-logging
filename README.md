@@ -12,13 +12,13 @@ les développements d'application à l'[OPT-NC](https://github.com/opt-nc).
 Toutes les logs sont dans le même fichier `.log (${LOG_FILE})` à l'exception des logs métiers qui se
 trouvent dans un seul fichier `.json` `(${LOG_FILE_JSON})` si le besoin est exprimé.
 
-## Import de la dépendance publique
+## ⬇️ Import de la dépendance publique
 
 Cette dépendance est disponible publiquement via [Jitpack](https://jitpack.io/#opt-nc/opt-logging).
 
-### Maven
+### 🪶 Maven
 
-Ajouter la repo Jitpack :
+Ajouter la repo [Jitpack](https://jitpack.io/) :
 
 ```xml
 <repositories>
@@ -39,7 +39,7 @@ Puis la dépedance :
 </dependency>
 ```
 
-### Gradle
+### 🐘 Gradle
 
 Ajouter la repo :
 
@@ -60,9 +60,9 @@ dependencies {
 }
 ```
 
-## Import de la dépendance via GH Packages
+## :octocat: Import de la dépendance via GH Packages
 
-### Gradle
+### 🐘 Gradle
 
 Ajouter la dépendance suivante dans votre build.gradle :
 
@@ -70,7 +70,7 @@ Ajouter la dépendance suivante dans votre build.gradle :
 compile group: 'nc.opt.core', name: 'opt-logging', version: '${opt-logging.verion}'
 ```
 
-### Maven
+### 🪶 Maven
 
 ```xml
 <dependency>
@@ -104,9 +104,9 @@ Contenu du fichier `src/main/resources/logback-spring.xml` :
 <include resource="nc/opt/core/logging/logs-metiers.xml" />
 ```
 
-## Fonctionnalités
+## 📑 Fonctionnalités
 
-## Logs classiques
+### Logs classiques
 
 Dans la configuration par défaut en version `1.3.0` :
 
@@ -116,7 +116,7 @@ Dans la configuration par défaut en version `1.3.0` :
 4. Le rootLogger est par défaut à `INFO`
 
 
-## Logs métiers
+### Logs métiers
 
 Dans la configuration des logs métiers en version `1.3.0` :
 
@@ -125,7 +125,7 @@ Dans la configuration des logs métiers en version `1.3.0` :
 - Le Logger métier est par défaut à `INFO`
 
 
-## Variables d'environnement
+### Variables d'environnement
 
 4 variables d'environnement sont nécessaires avec un profil non dev : 
 
@@ -144,7 +144,7 @@ Une variable supplémentaire est nécessaire si on veut utiliser le service de l
 - [x] La variable doit se terminer par `.json`
 
 
-## How to log ?
+## ❔ How to log
 
 ### Utilisation des logs classiques
 
@@ -167,7 +167,7 @@ Le fichier est un fichier `.log` avec une ligne par log de la forme suivante :
 2017-09-19 10:01:27,273 [StreamThread-1] [INFO ] nc.opt.kafka.wfm.service.impl.WfmServiceImpl - TypeTCRM=THDF | Produit=null | Queue=Telecom::CPMC::IC::RLB | TypeId=10
 ```
 
-**NB : Le fichier peut contenir des logs multi lignes en cas de stack trace java.**
+👉 **Le fichier peut contenir des logs multi lignes en cas de stack trace java.**
 
 ### Utilisation du service de log métier
 
