@@ -6,6 +6,8 @@ updates:
     schedule:
       interval: "daily"
     target-branch: develop
+    labels:
+      - "Alert : dependency update"
 
   # Maintain dependencies for java
   - package-ecosystem: "maven"
@@ -15,4 +17,6 @@ updates:
     target-branch: develop
     commit-message:
       prefix: fix
+    labels:
+      - "Alert : dependency update"
 
