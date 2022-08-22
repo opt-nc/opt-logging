@@ -29,8 +29,8 @@
         <spring-context.version>5.3.22</spring-context.version>
         <jol-core.version>0.16</jol-core.version>
         <logback-classic.version>1.2.11</logback-classic.version>
-        <junit-jupiter.version>5.8.2</junit-jupiter.version>
-        <spring-boot-starter-test.version>2.7.2</spring-boot-starter-test.version>
+        <junit-jupiter.version>5.9.0</junit-jupiter.version>
+        <spring-boot-starter-test.version>2.7.3</spring-boot-starter-test.version>
 
         <!-- Plugins versions -->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
