@@ -12,3 +12,5 @@ build/
 *.log
 out/
 target
+## vscode
+.vscode/
