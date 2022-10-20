@@ -23,7 +23,7 @@
     </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.8</java.version>
+        <maven.compiler.release>11</maven.compiler.release>
         <!-- Dependencies versions -->
         <logstash-logback-encoder.version>7.2</logstash-logback-encoder.version>
         <spring-context.version>5.3.23</spring-context.version>
@@ -37,7 +37,7 @@
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-failsafe-plugin>2.22.2</maven-failsafe-plugin>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
-             
+
         <!-- Sonarcloud analysis -->
         <sonar.organization>opt-nc</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -80,18 +80,21 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -105,15 +108,10 @@
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
             </plugin>
 
             <plugin>
