@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>nc.opt.core</groupId>
     <artifactId>opt-logging</artifactId>
-    <version>2.1.24</version>
+    <version>3.0.0</version>
     <name>opt-logging</name>
     <description>Librairie OPT de gestion des logs pour les applications du socle.</description>
     <inceptionYear>2017</inceptionYear>
