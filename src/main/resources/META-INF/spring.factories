@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-nc.opt.core.logging.config.LogMetierAutoConfiguration

@@ -1,14 +1,7 @@
 package nc.opt.core.logging;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -17,16 +10,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest(classes = LogMetierService.class)
-public class LogMetierServiceTest {
+class LogMetierServiceTest {
 
     @Autowired
     private LogMetierService service;
 
-    private ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    private ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+            false);
 
     private ByteArrayOutputStream myOut;
 
@@ -55,43 +57,49 @@ public class LogMetierServiceTest {
     }
 
     @BeforeEach
-    public void init() {
+    void init() {
         myOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(myOut));
     }
 
     @Test
-    public void testLogObject() throws Exception {
+    void testLogObject() throws Exception {
         TestObject obj = new TestObject("toto");
         service.logObject("test", obj);
 
-        //{"@timestamp":"2017-12-15T10:41:15.046+11:00","@version":1,"message":"add log entry for test","logger_name":"metiersLogger","thread_name":"main","level":"INFO","level_value":20000,"test":{"name":"toto"}}
-        //On vérifie que les logs sont bien en JSON
+        // {"@timestamp":"2017-12-15T10:41:15.046+11:00","@version":1,"message":"add log
+        // entry for
+        // test","logger_name":"metiersLogger","thread_name":"main","level":"INFO","level_value":20000,"test":{"name":"toto"}}
+        // On vérifie que les logs sont bien en JSON
         final String standardOutput = myOut.toString();
         LogObject log = mapper.readValue(standardOutput, LogObject.class);
         assertEqualsLog("test", log, obj);
     }
 
     @Test
-    public void testLogArray() throws Exception {
+    void testLogArray() throws Exception {
         TestObject obj1 = new TestObject("1");
         TestObject obj2 = new TestObject("2");
-        service.logArray("test", new TestObject[]{obj1, obj2});
+        service.logArray("test", (Object[]) new TestObject[] { obj1, obj2 });
 
-        //{"@timestamp":"2017-12-15T10:55:09.564+11:00","@version":1,"message":"add log entry for test","logger_name":"metiersLogger","thread_name":"main","level":"INFO","level_value":20000,"test":[{"name":"1"},{"name":"2"}]}
-        //On vérifie que les logs sont bien en JSON
+        // {"@timestamp":"2017-12-15T10:55:09.564+11:00","@version":1,"message":"add log
+        // entry for
+        // test","logger_name":"metiersLogger","thread_name":"main","level":"INFO","level_value":20000,"test":[{"name":"1"},{"name":"2"}]}
+        // On vérifie que les logs sont bien en JSON
         final String standardOutput = myOut.toString();
         LogArray log = mapper.readValue(standardOutput, LogArray.class);
         assertEqualsLog("test", log, obj1, obj2);
     }
 
     @Test
-    public void testLogAttributes() throws Exception {
+    void testLogAttributes() throws Exception {
         TestObject obj1 = new TestObject("1");
         service.logAttributes(obj1);
 
-        //{"@timestamp":"2017-12-15T11:36:09.817+11:00","@version":1,"message":"add log entry for class nc.opt.core.logging.LogMetierServiceTest$TestObject","logger_name":"metiersLogger","thread_name":"main","level":"INFO","level_value":20000,"name":"1"}
-        //On vérifie que les logs sont bien en JSON
+        // {"@timestamp":"2017-12-15T11:36:09.817+11:00","@version":1,"message":"add log
+        // entry for class
+        // nc.opt.core.logging.LogMetierServiceTest$TestObject","logger_name":"metiersLogger","thread_name":"main","level":"INFO","level_value":20000,"name":"1"}
+        // On vérifie que les logs sont bien en JSON
         final String standardOutput = myOut.toString();
         LogObject log = mapper.readValue(standardOutput, LogObject.class);
         assertEqualsLog("class " + TestObject.class.getName(), log);
@@ -99,26 +107,31 @@ public class LogMetierServiceTest {
     }
 
     @Test
-    public void testLogJson() throws Exception {
+    void testLogJson() throws Exception {
         TestObject obj1 = new TestObject("1");
         service.logJson("test", mapper.writeValueAsString(obj1));
 
-        //{"@timestamp":"2017-12-15T11:55:05.818+11:00","@version":1,"message":"add log entry for test","logger_name":"metiersLogger","thread_name":"main","level":"INFO","level_value":20000,"test":{"name":"1"}}
-        //On vérifie que les logs sont bien en JSON
+        // {"@timestamp":"2017-12-15T11:55:05.818+11:00","@version":1,"message":"add log
+        // entry for
+        // test","logger_name":"metiersLogger","thread_name":"main","level":"INFO","level_value":20000,"test":{"name":"1"}}
+        // On vérifie que les logs sont bien en JSON
         final String standardOutput = myOut.toString();
         LogObject log = mapper.readValue(standardOutput, LogObject.class);
         assertEqualsLog("test", log, obj1);
     }
 
     @Test
-    public void testLogEntries() throws Exception {
+    void testLogEntries() throws Exception {
         TestObject obj1 = new TestObject("1");
         Map<String, TestObject> entries = new HashMap<>();
         entries.put("test", obj1);
         service.logEntries(entries);
 
-        //{"@timestamp":"2017-12-15T11:59:09.672+11:00","@version":1,"message":"add log entry for map","logger_name":"metiersLogger","thread_name":"main","level":"INFO","level_value":20000,"test":{"name":"1"}}
-        //On vérifie que les logs sont bien en JSON
+        // {"@timestamp":"2017-12-15T11:59:09.672+11:00","@version":1,"message":"add log
+        // entry for
+        // map","logger_name":"metiersLogger","thread_name":"main","level":"INFO","level_value":20000,"test":{"name":"1"}}
+
+        // On vérifie que les logs sont bien en JSON
         final String standardOutput = myOut.toString();
         LogObject log = mapper.readValue(standardOutput, LogObject.class);
         assertEqualsLog("map", log, obj1);
@@ -151,7 +164,6 @@ public class LogMetierServiceTest {
         private String level;
         @JsonProperty("level_value")
         private Integer levelValue;
-
         public AbstractLogObject() {
 
         }
@@ -170,7 +182,7 @@ public class LogMetierServiceTest {
         }
 
         @JsonAnySetter
-        public void set(String fieldName, Object value) {
+        void set(String fieldName, Object value) {
             this.attributes.put(fieldName, value);
         }
     }

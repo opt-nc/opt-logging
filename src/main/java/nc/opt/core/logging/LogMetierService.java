@@ -1,12 +1,13 @@
 package nc.opt.core.logging;
 
-import net.logstash.logback.marker.Markers;
+import java.util.Map;
+
 import org.openjdk.jol.info.GraphLayout;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
+import net.logstash.logback.marker.Markers;
 
 /**
  * Created by 2816ARN on 06/09/2017.
@@ -23,7 +24,8 @@ public class LogMetierService {
     }
 
     public void logObject(String objectName, String endPoint, String obj) {
-        LOGGER.info(Markers.append(objectName, new LogObject(endPoint, GraphLayout.parseInstance(obj).totalSize())), MSG, objectName);
+        LOGGER.info(Markers.append(objectName, new LogObject(endPoint, GraphLayout.parseInstance(obj).totalSize())),
+                MSG, objectName);
     }
 
     public void logAttributes(Object obj) {
