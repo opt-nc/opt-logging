@@ -1,0 +1,34 @@
+name: Test PR & features
+
+on:
+  pull_request:
+  push:
+    branches-ignore: [main, develop]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: ☕️ Read Java Version
+        id: java
+        uses: YunaBraska/java-info-action@2.1.2
+        with:
+          jv-fallback: 0
+
+      - name: ☕️ Set up JDK ${{ steps.java.outputs.java_version || steps.java.outputs.x_maven_compiler_release || steps.java.outputs.x_maven_compiler_source }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ steps.java.outputs.java_version || steps.java.outputs.x_maven_compiler_release || steps.java.outputs.x_maven_compiler_source }}
+          distribution: 'temurin'
+          cache: 'maven'
+
+
+      - name: 🧪 Test with Maven
+        run: mvn -B verify
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

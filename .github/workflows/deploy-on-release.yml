@@ -1,0 +1,39 @@
+name: Deploy JAR to GitHub Packages
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  deploy:
+    name: Deploy JAR
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📤 Checkout ${{ github.repository }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: ☕️ Read Java Version
+        id: java
+        uses: YunaBraska/java-info-action@2.1.2
+        with:
+          jv-fallback: 0
+
+      - name: ☕️ Set up JDK ${{ steps.java.outputs.java_version || steps.java.outputs.x_maven_compiler_release || steps.java.outputs.x_maven_compiler_source }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ steps.java.outputs.java_version || steps.java.outputs.x_maven_compiler_release || steps.java.outputs.x_maven_compiler_source }}
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Generation du package et Upload du JAR
+        run: |
+          mvn -B source:jar deploy -DskipTests
+        env:
+          GITHUB_TOKEN: ${{ secrets.OPT_CI_TOKEN }}

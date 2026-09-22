@@ -1,0 +1,68 @@
+name: Test, release
+
+on:
+  push:
+    branches: [main, develop]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  test-release-deploy:
+    name: Test, Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: ☕️ Read Java Version
+        id: java
+        uses: YunaBraska/java-info-action@2.1.2
+        with:
+          jv-fallback: 0
+
+      - name: ☕️ Set up JDK ${{ steps.java.outputs.java_version || steps.java.outputs.x_maven_compiler_release || steps.java.outputs.x_maven_compiler_source }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ steps.java.outputs.java_version || steps.java.outputs.x_maven_compiler_release || steps.java.outputs.x_maven_compiler_source }}
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: 🧪 Test with Maven
+        run: mvn -B verify
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ⚙️ Semantic Release
+        id: release
+        uses: cycjimmy/semantic-release-action@b12c8f6015dc215fe37bc154d4ad456dd3833c90 # v6.0.0
+        with:
+          extra_plugins: |
+            @semantic-release/exec
+            conventional-changelog-conventionalcommits@8
+            @semantic-release/git
+        env:
+          GITHUB_TOKEN: ${{ secrets.OPT_CI_TOKEN }} # un token particulier pour que les workflows sur release soient déclenchés
+
+
+      - name: 👍 Merge main back to dev
+        if: github.ref == 'refs/heads/main' && steps.release.outputs.new_release_published == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git fetch
+          git checkout develop
+          git branch --set-upstream-to=origin/develop develop
+          git pull
+          git merge --no-ff main -m "Auto-merge main back to dev"
+          git push
+
+      - name: 🧹 Delete pre-releases
+        if: github.ref == 'refs/heads/main' && steps.release.outputs.new_release_published == 'true'
+        uses: dev-drprasad/delete-older-releases@v0.3.4
+        with:
+          delete_tag_pattern: develop
+          keep_latest: 0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
