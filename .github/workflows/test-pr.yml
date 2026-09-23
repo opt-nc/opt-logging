@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: ☕️ Read Java Version
         id: java
-        uses: YunaBraska/java-info-action@2.1.2
+        uses: YunaBraska/java-info-action@3.0.13
         with:
           jv-fallback: 0
 
