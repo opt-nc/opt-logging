@@ -27,15 +27,15 @@
         <!-- Dependencies versions -->
         <logstash-logback-encoder.version>7.2</logstash-logback-encoder.version>
         <spring-context.version>5.3.23</spring-context.version>
-        <jol-core.version>0.16</jol-core.version>
-        <logback-classic.version>1.2.11</logback-classic.version>
-        <junit-jupiter.version>5.9.1</junit-jupiter.version>
+        <jol-core.version>0.17</jol-core.version>
+        <logback-classic.version>1.2.13</logback-classic.version>
+        <junit-jupiter.version>5.9.2</junit-jupiter.version>
         <spring-boot-starter-test.version>2.7.5</spring-boot-starter-test.version>
 
         <!-- Plugins versions -->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-        <maven-failsafe-plugin>2.22.2</maven-failsafe-plugin>
+        <maven-failsafe-plugin>3.6.0</maven-failsafe-plugin>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
 
         <!-- Sonarcloud analysis -->
