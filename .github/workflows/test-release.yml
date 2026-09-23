@@ -23,7 +23,7 @@ jobs:
           jv-fallback: 0
 
       - name: ☕️ Set up JDK ${{ steps.java.outputs.java_version || steps.java.outputs.x_maven_compiler_release || steps.java.outputs.x_maven_compiler_source }}
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           java-version: ${{ steps.java.outputs.java_version || steps.java.outputs.x_maven_compiler_release || steps.java.outputs.x_maven_compiler_source }}
           distribution: 'temurin'
