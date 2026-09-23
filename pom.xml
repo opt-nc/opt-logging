@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>nc.opt.core</groupId>
     <artifactId>opt-logging</artifactId>
-    <version>2.1.24</version>
+    <version>3.0.1</version>
     <name>opt-logging</name>
     <description>Librairie OPT de gestion des logs pour les applications du socle.</description>
     <inceptionYear>2017</inceptionYear>
@@ -175,8 +175,10 @@
     <distributionManagement>
         <repository>
             <id>github</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/opt-nc/opt-logging</url>
+            <url>https://maven.pkg.github.com/opt-nc/libs</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </distributionManagement>
 </project>
